@@ -89,8 +89,8 @@ export default function DashboardView({ candidates, selectedCandidate, setSelect
   return (
     <div className="dashboard-grid animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
       
-      {/* TOP ROW: Recent Resume Scans (1.3fr), Skill Distribution (1fr), Experience Trend (1fr) */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.3fr 1.1fr 1.1fr", gap: "20px" }}>
+      {/* TOP ROW */}
+      <div className="grid-top-row">
         
         {/* Card 1: Resume Scanned / Recent Uploads List */}
         <div className="glass-card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -173,8 +173,8 @@ export default function DashboardView({ candidates, selectedCandidate, setSelect
         </div>
       </div>
 
-      {/* BOTTOM ROW: Candidate Ranking Table (1.1fr), Job Matching Card (1fr) */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: "20px" }}>
+      {/* BOTTOM ROW */}
+      <div className="grid-bottom-row">
         
         {/* Card 4: Candidate Ranking Table */}
         <div className="glass-card" style={{ padding: "20px" }}>
@@ -254,7 +254,7 @@ export default function DashboardView({ candidates, selectedCandidate, setSelect
             </div>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: "16px" }}>
+          <div className="grid-2col-matching">
             
             {/* Left Sub-column: Job Description details */}
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>

@@ -1490,6 +1490,58 @@ body {
   pointer-events: none;
 }
 
+
+/* ============================================================
+   NAMED GRID CLASSES — desktop defaults
+   ============================================================ */
+
+.grid-top-row {
+  display: grid;
+  grid-template-columns: 1.3fr 1.1fr 1.1fr;
+  gap: 20px;
+}
+
+.grid-bottom-row {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+.grid-screener-3col {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+  gap: 20px;
+}
+
+.grid-prep-2col {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 20px;
+}
+
+.grid-2col-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.grid-2col-small {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  font-size: 11px;
+}
+
+.grid-2col-matching {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 16px;
+}
+
+.grid-jobmatch {
+  grid-template-columns: 1.1fr 1fr !important;
+}
+
 /* ============================================================
    HAMBURGER BUTTON — hidden on desktop, shown on mobile
    ============================================================ */
@@ -1506,164 +1558,156 @@ body {
   justify-content: center;
   flex-shrink: 0;
   transition: var(--transition-smooth);
+  z-index: 30;
 }
 .hamburger-btn:hover {
   background: rgba(255,255,255,0.06);
   color: var(--text-primary);
 }
 
-/* Sidebar dark overlay on mobile */
+/* Sidebar dark overlay — hidden by default */
 .sidebar-overlay {
-  display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(3px);
   z-index: 19;
+  display: none;
 }
 
 /* ============================================================
-   MOBILE RESPONSIVE — ≤ 768px
+   TABLET & MOBILE — ≤ 900px
+   ============================================================ */
+@media (max-width: 900px) {
+  .grid-top-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  .grid-screener-3col {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ============================================================
+   MOBILE — ≤ 768px
    ============================================================ */
 @media (max-width: 768px) {
 
-  /* Show hamburger, show overlay when sidebar is open */
+  /* Show hamburger */
   .hamburger-btn {
     display: flex;
   }
 
+  /* Show overlay only when sidebar is open (sidebar-open class is set) */
+  .sidebar-open ~ .main-content .sidebar-overlay,
   .sidebar-overlay {
     display: block;
   }
 
-  /* Sidebar becomes a fixed off-canvas drawer */
+  /* Sidebar becomes a fixed off-canvas left drawer */
   .sidebar {
     position: fixed !important;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: 260px;
-    z-index: 20;
-    transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
+    top: 0 !important;
+    left: 0 !important;
+    height: 100dvh !important;
+    width: 260px !important;
+    z-index: 20 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
   }
 
-  /* When open, slide in */
   .sidebar.sidebar-open {
-    transform: translateX(0);
+    transform: translateX(0) !important;
   }
 
-  /* Main content takes full width */
+  /* Main content fills full width */
   .app-container {
-    flex-direction: column;
+    flex-direction: row !important;
   }
 
   .main-content {
-    width: 100%;
-    height: 100dvh;
+    width: 100% !important;
+    min-width: 0 !important;
   }
 
-  /* Header: tighter on mobile */
+  /* Header compact */
   .header {
-    height: 60px;
-    padding: 0 16px;
-    gap: 12px;
+    height: 60px !important;
+    padding: 0 14px !important;
+    gap: 10px !important;
   }
 
   .header-title {
-    font-size: 16px;
-    flex: 1;
+    font-size: 15px !important;
+    flex: 1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   .header-actions {
-    gap: 8px;
+    gap: 6px !important;
   }
 
   .header-icon-btn {
-    width: 32px;
-    height: 32px;
+    width: 32px !important;
+    height: 32px !important;
   }
 
   /* Content pane padding */
   .content-pane {
-    padding: 16px;
+    padding: 14px !important;
   }
 
-  /* --- Stack all multi-column grids to single column --- */
-
-  /* Dashboard top 3-column row */
-  [style*="grid-template-columns: 1.3fr 1.1fr 1.1fr"],
-  [style*="gridTemplateColumns: \"1.3fr 1.1fr 1.1fr\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Dashboard bottom 2-column row */
-  [style*="grid-template-columns: 1.2fr 1fr"],
-  [style*="gridTemplateColumns: \"1.2fr 1fr\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Resume Screener 3-column layout */
-  [style*="grid-template-columns: 1.2fr 1fr 1.2fr"],
-  [style*="gridTemplateColumns: \"1.2fr 1fr 1.2fr\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Interview Prep 2-column */
-  [style*="grid-template-columns: 1fr 1.4fr"],
-  [style*="gridTemplateColumns: \"1fr 1.4fr\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Comparison selectors */
-  .compare-selectors {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Comparison cards */
+  /* Stack ALL named grid classes to single column */
+  .grid-top-row,
+  .grid-bottom-row,
+  .grid-screener-3col,
+  .grid-prep-2col,
+  .grid-2col-matching,
+  .grid-jobmatch,
+  .dashboard-grid,
   .comparison-grid {
     grid-template-columns: 1fr !important;
   }
 
-  /* Job Matching 2-column */
-  .dashboard-grid {
+  /* Keep 2-col only for small items */
+  .grid-2col-equal,
+  .grid-2col-small {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Comparison selectors stack */
+  .compare-selectors {
     grid-template-columns: 1fr !important;
   }
 
-  /* Any generic inline 2-column grids */
-  [style*="gridTemplateColumns: \"1.1fr 1fr\""],
-  [style*="gridTemplateColumns: \"1fr 1.2fr\""],
-  [style*="gridTemplateColumns: \"1.1fr 1.1fr\""],
-  [style*="gridTemplateColumns: \"1fr 1fr\""] {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Remove border-left dividers that break stacked layout */
-  [style*="border-left: \"1px solid var(--border-color)\""],
-  [style*="borderLeft: \"1px solid var(--border-color)\""] {
+  /* Remove border-left dividers on stacked items */
+  .grid-2col-matching > div:last-child {
     border-left: none !important;
     padding-left: 0 !important;
+    border-top: 1px solid var(--border-color);
+    padding-top: 14px;
   }
 
-  /* --- Career Mentor widget full-width on mobile --- */
+  /* Career Mentor widget full-width on mobile */
   .career-mentor-floating {
-    right: 12px;
-    left: 12px;
-    width: auto;
-    bottom: 12px;
-    height: 420px;
+    right: 10px !important;
+    left: 10px !important;
+    width: auto !important;
+    bottom: 10px !important;
+    height: 420px !important;
   }
 
-  /* --- Dashboard KPI grid --- */
+  /* Liquid blobs smaller on mobile */
+  .liquid-blob-1 { width: 260px !important; height: 260px !important; }
+  .liquid-blob-2 { width: 300px !important; height: 300px !important; }
+  .liquid-blob-3 { width: 220px !important; height: 220px !important; }
+
+  /* Dashboard KPI 2-col on mobile */
   .dashboard-kpi-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
-
-  /* Liquid blobs — smaller on mobile to save GPU */
-  .liquid-blob-1 { width: 280px; height: 280px; }
-  .liquid-blob-2 { width: 320px; height: 320px; }
-  .liquid-blob-3 { width: 240px; height: 240px; }
 }
 
 /* ============================================================
@@ -1671,26 +1715,24 @@ body {
    ============================================================ */
 @media (max-width: 480px) {
   .header-title {
-    font-size: 14px;
-  }
-
-  /* Hide less critical header buttons to save space */
-  .header-icon-btn:not(:first-child):not(:last-child) {
-    display: none;
+    font-size: 13px !important;
   }
 
   .content-pane {
-    padding: 12px;
+    padding: 10px !important;
   }
 
-  /* KPI grid single column on very small screens */
-  .dashboard-kpi-grid {
-    grid-template-columns: 1fr 1fr !important;
+  /* Hide middle header icons to save space */
+  .header-actions .header-icon-btn:nth-child(2) {
+    display: none !important;
   }
 
-  /* Interview Prep: stack key points below category buttons */
-  [style*="grid-template-columns: 1fr 1fr"][style*="gap: \"10px\""] {
-    grid-template-columns: 1fr 1fr !important;
+  /* Cards take full width with less padding */
+  .glass-card {
+    border-radius: 12px !important;
   }
 }
+
+
+
 

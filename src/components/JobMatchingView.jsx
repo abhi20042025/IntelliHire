@@ -7,7 +7,7 @@ export default function JobMatchingView({ candidates, selectedCandidate, setSele
   const activeJob = jobPostings.find((job) => job.id === selectedJobId);
 
   return (
-    <div className="dashboard-grid animate-fade-in" style={{ gridTemplateColumns: "1.1fr 1fr" }}>
+    <div className="dashboard-grid animate-fade-in grid-jobmatch">
       {/* Left Column: Job Description & Details */}
       <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
         <div className="glass-card" style={{ padding: "24px" }}>

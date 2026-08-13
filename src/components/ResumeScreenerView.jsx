@@ -57,7 +57,7 @@ export default function ResumeScreenerView({ candidates, setCandidates, uploadHi
     <div className="animate-fade-in" style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
       
       {/* Top Banner: Component Header Labels */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1.2fr", gap: "20px" }}>
+      <div className="grid-screener-3col">
         
         {/* Component 1: Resume Screener */}
         <div className="glass-card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
@@ -207,7 +207,7 @@ export default function ResumeScreenerView({ candidates, setCandidates, uploadHi
           {/* Key Metrics Overview */}
           <div style={{ backgroundColor: "rgba(255,255,255,0.03)", padding: "12px", borderRadius: "10px", border: "1px solid var(--border-color)" }}>
             <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)", display: "block", marginBottom: "8px" }}>Key Metrics Overview</span>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", fontSize: "11px" }}>
+            <div className="grid-2col-small">
               <div>Java: <strong style={{ color: "#34d399" }}>25%</strong></div>
               <div>Python: <strong style={{ color: "#60a5fa" }}>35%</strong></div>
               <div>AWS: <strong style={{ color: "#fbbf24" }}>20%</strong></div>

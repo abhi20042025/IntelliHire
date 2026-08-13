@@ -62,11 +62,11 @@ export default function InterviewPrepView() {
         </p>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1.4fr", gap: "20px" }}>
+      <div className="grid-prep-2col">
         {/* Left Side: Question Type Selector */}
         <div className="glass-card" style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "16px" }}>
           <span style={{ fontSize: "11px", fontWeight: "600", color: "var(--text-secondary)" }}>Question Category</span>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
+          <div className="grid-2col-equal">
             {questionTypes.map((type) => (
               <button
                 key={type}
