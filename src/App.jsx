@@ -16,6 +16,7 @@ function App() {
   const [mentorOpen, setMentorOpen] = useState(false);
   const [uploadHistory, setUploadHistory] = useState(initialUploadHistory);
   const [theme, setTheme] = useState("dark");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "dark" ? "light" : "dark"));
@@ -85,17 +86,24 @@ function App() {
       <div className="liquid-blob liquid-blob-3"></div>
 
       <div className="app-container">
+        {/* Mobile overlay */}
+        {sidebarOpen && (
+          <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+        )}
+
         {/* Sidebar Navigation */}
         <Sidebar
           activeTab={activeTab}
-          setActiveTab={setActiveTab}
+          setActiveTab={(tab) => { setActiveTab(tab); setSidebarOpen(false); }}
           mentorOpen={mentorOpen}
           setMentorOpen={setMentorOpen}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
         />
 
         {/* Main Panel */}
         <main className="main-content">
-          <Header activeTab={activeTab} theme={theme} toggleTheme={toggleTheme} />
+          <Header activeTab={activeTab} theme={theme} toggleTheme={toggleTheme} sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <div className="content-pane">{renderContent()}</div>
         </main>
 

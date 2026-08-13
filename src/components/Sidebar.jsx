@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Sidebar({ activeTab, setActiveTab, mentorOpen, setMentorOpen }) {
+export default function Sidebar({ activeTab, setActiveTab, mentorOpen, setMentorOpen, sidebarOpen, setSidebarOpen }) {
   const menuItems = [
     {
       id: "dashboard",
@@ -57,7 +57,7 @@ export default function Sidebar({ activeTab, setActiveTab, mentorOpen, setMentor
   ];
 
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar${sidebarOpen ? " sidebar-open" : ""}`}>
       <div>
         <div className="sidebar-logo">
           <div className="logo-icon">IH</div>

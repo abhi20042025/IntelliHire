@@ -1489,3 +1489,208 @@ body {
   opacity: 0.65;
   pointer-events: none;
 }
+
+/* ============================================================
+   HAMBURGER BUTTON — hidden on desktop, shown on mobile
+   ============================================================ */
+.hamburger-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+.hamburger-btn:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--text-primary);
+}
+
+/* Sidebar dark overlay on mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 19;
+}
+
+/* ============================================================
+   MOBILE RESPONSIVE — ≤ 768px
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* Show hamburger, show overlay when sidebar is open */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  .sidebar-overlay {
+    display: block;
+  }
+
+  /* Sidebar becomes a fixed off-canvas drawer */
+  .sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 260px;
+    z-index: 20;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+  }
+
+  /* When open, slide in */
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  /* Main content takes full width */
+  .app-container {
+    flex-direction: column;
+  }
+
+  .main-content {
+    width: 100%;
+    height: 100dvh;
+  }
+
+  /* Header: tighter on mobile */
+  .header {
+    height: 60px;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .header-title {
+    font-size: 16px;
+    flex: 1;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .header-icon-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Content pane padding */
+  .content-pane {
+    padding: 16px;
+  }
+
+  /* --- Stack all multi-column grids to single column --- */
+
+  /* Dashboard top 3-column row */
+  [style*="grid-template-columns: 1.3fr 1.1fr 1.1fr"],
+  [style*="gridTemplateColumns: \"1.3fr 1.1fr 1.1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Dashboard bottom 2-column row */
+  [style*="grid-template-columns: 1.2fr 1fr"],
+  [style*="gridTemplateColumns: \"1.2fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Resume Screener 3-column layout */
+  [style*="grid-template-columns: 1.2fr 1fr 1.2fr"],
+  [style*="gridTemplateColumns: \"1.2fr 1fr 1.2fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Interview Prep 2-column */
+  [style*="grid-template-columns: 1fr 1.4fr"],
+  [style*="gridTemplateColumns: \"1fr 1.4fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Comparison selectors */
+  .compare-selectors {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Comparison cards */
+  .comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Job Matching 2-column */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Any generic inline 2-column grids */
+  [style*="gridTemplateColumns: \"1.1fr 1fr\""],
+  [style*="gridTemplateColumns: \"1fr 1.2fr\""],
+  [style*="gridTemplateColumns: \"1.1fr 1.1fr\""],
+  [style*="gridTemplateColumns: \"1fr 1fr\""] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Remove border-left dividers that break stacked layout */
+  [style*="border-left: \"1px solid var(--border-color)\""],
+  [style*="borderLeft: \"1px solid var(--border-color)\""] {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  /* --- Career Mentor widget full-width on mobile --- */
+  .career-mentor-floating {
+    right: 12px;
+    left: 12px;
+    width: auto;
+    bottom: 12px;
+    height: 420px;
+  }
+
+  /* --- Dashboard KPI grid --- */
+  .dashboard-kpi-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Liquid blobs — smaller on mobile to save GPU */
+  .liquid-blob-1 { width: 280px; height: 280px; }
+  .liquid-blob-2 { width: 320px; height: 320px; }
+  .liquid-blob-3 { width: 240px; height: 240px; }
+}
+
+/* ============================================================
+   SMALL MOBILE — ≤ 480px
+   ============================================================ */
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 14px;
+  }
+
+  /* Hide less critical header buttons to save space */
+  .header-icon-btn:not(:first-child):not(:last-child) {
+    display: none;
+  }
+
+  .content-pane {
+    padding: 12px;
+  }
+
+  /* KPI grid single column on very small screens */
+  .dashboard-kpi-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Interview Prep: stack key points below category buttons */
+  [style*="grid-template-columns: 1fr 1fr"][style*="gap: \"10px\""] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
