@@ -84,52 +84,51 @@ function App() {
   };
 
   return (
-    <>
-      {/* ── Mobile sidebar + backdrop ─────────────────────────────────
-          Rendered at React root level — outside all overflow:hidden
-          containers — so position:fixed works without clipping. */}
-      {sidebarOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={() => setSidebarOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-      <Sidebar
-        activeTab={activeTab}
-        setActiveTab={(tab) => { setActiveTab(tab); setSidebarOpen(false); }}
-        mentorOpen={mentorOpen}
-        setMentorOpen={setMentorOpen}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
+    <div className={`liquid-display-container ${theme === "light" ? "light-theme" : ""}`}>
+      <div className="liquid-blob liquid-blob-1"></div>
+      <div className="liquid-blob liquid-blob-2"></div>
+      <div className="liquid-blob liquid-blob-3"></div>
 
-      {/* ── Main app shell ───────────────────────────────────────── */}
-      <div className={`liquid-display-container ${theme === "light" ? "light-theme" : ""}`}>
-        <div className="liquid-blob liquid-blob-1"></div>
-        <div className="liquid-blob liquid-blob-2"></div>
-        <div className="liquid-blob liquid-blob-3"></div>
-
-        <div className="app-container">
-          <main className="main-content">
-            <Header
-              activeTab={activeTab}
-              theme={theme}
-              toggleTheme={toggleTheme}
-              sidebarOpen={sidebarOpen}
-              setSidebarOpen={setSidebarOpen}
-            />
-            <div className="content-pane">{renderContent()}</div>
-          </main>
-
-          <CareerMentor
-            isOpen={mentorOpen}
-            onClose={() => setMentorOpen(false)}
-            candidates={candidates}
+      <div className="app-container">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
+          <div
+            className="sidebar-overlay"
+            onClick={() => setSidebarOpen(false)}
+            aria-hidden="true"
           />
-        </div>
+        )}
+        
+        {/* Sidebar Navigation */}
+        <Sidebar
+          activeTab={activeTab}
+          setActiveTab={(tab) => { setActiveTab(tab); setSidebarOpen(false); }}
+          mentorOpen={mentorOpen}
+          setMentorOpen={setMentorOpen}
+          sidebarOpen={sidebarOpen}
+          setSidebarOpen={setSidebarOpen}
+        />
+
+        {/* Main Panel */}
+        <main className="main-content">
+          <Header
+            activeTab={activeTab}
+            theme={theme}
+            toggleTheme={toggleTheme}
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
+          <div className="content-pane">{renderContent()}</div>
+        </main>
+
+        {/* Floating Career Mentor Chat Widget */}
+        <CareerMentor
+          isOpen={mentorOpen}
+          onClose={() => setMentorOpen(false)}
+          candidates={candidates}
+        />
       </div>
-    </>
+    </div>
   );
 }
 
